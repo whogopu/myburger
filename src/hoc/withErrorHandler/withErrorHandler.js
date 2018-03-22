@@ -7,15 +7,25 @@ const withErrorHandler = (WrappedComponent, axios) => {
       error: null
     };
 
-    componentDidMount() {
-      axios.interceptors.request.use(req => {
-				this.setState({ error: null });
-				return req
-      });
+    componentWillMount() {
+      this.reqInterceptor = axios.interceptors.request.use(
+        req => {
+          this.setState({ error: null });
+          return req;
+        },
+        error => {
+          this.setState({ error });
+          return Promise.reject(error)
+        }
+      );
 
-      axios.interceptors.response.use(res => res, error => {
-        this.setState({ error });
-      });
+      this.resInterceptor = axios.interceptors.response.use(
+        res => res,
+        error => {
+          this.setState({ error });
+          return Promise.reject(error)
+        }
+      );
     }
 
     errorConfirmedHandler = () => {
@@ -25,7 +35,10 @@ const withErrorHandler = (WrappedComponent, axios) => {
     render() {
       return (
         <Aux>
-          <Modal show={this.state.error} modalClosed={this.errorConfirmedHandler}>
+          <Modal
+            show={this.state.error}
+            modalClosed={this.errorConfirmedHandler}
+          >
             {" "}
             {this.state.error ? this.state.error.message : null}
           </Modal>
