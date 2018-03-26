@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Burger.css";
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
-
+import { withRouter } from "react-router-dom";
 const burger = props => {
   let transformedIngredients = Object.keys(props.ingredients)
     .map(igKey => {
@@ -13,8 +13,8 @@ const burger = props => {
       return arr.concat(elem);
     }, []);
 
-    if(transformedIngredients.length <= 0)
-    transformedIngredients = <div>Please add ingredients...</div>
+  if (transformedIngredients.length <= 0)
+    transformedIngredients = <div>Please add ingredients...</div>;
 
   return (
     <div className={classes.Burger}>
@@ -25,4 +25,4 @@ const burger = props => {
   );
 };
 
-export default burger;
+export default withRouter(burger);
