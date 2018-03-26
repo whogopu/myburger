@@ -70,6 +70,22 @@ class BurgerBuilder extends Component {
         console.log("err", err);
         this.setState({ purchasing: false, loading: false });
       });
+
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+
+    const queryString = queryParams.join("&");
+
+    this.props.history.push({
+      pathname: "/checkout",
+      search: "?" + queryString
+    });
   };
 
   updatePurchaseState = ingredients => {
@@ -137,7 +153,7 @@ class BurgerBuilder extends Component {
     }
 
     let burger = this.state.error ? (
-      <p style={{textAlign:'center'}}>Ingredients Cant be loaded...!!!</p>
+      <p style={{ textAlign: "center" }}>Ingredients Cant be loaded...!!!</p>
     ) : (
       <Spinner />
     );

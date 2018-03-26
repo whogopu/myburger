@@ -15,7 +15,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         },
         error => {
           this.setState({ error });
-          return Promise.reject(error)
+          return Promise.reject(error);
         }
       );
 
@@ -23,7 +23,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         res => res,
         error => {
           this.setState({ error });
-          return Promise.reject(error)
+          return Promise.reject(error);
         }
       );
     }
