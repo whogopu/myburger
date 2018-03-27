@@ -2,6 +2,7 @@ import React from "react";
 import Burger from "../../Burger/Burger";
 import Button from "../../UI/Button/Button";
 import classes from "../CheckoutSummary/CheckoutSummary.css";
+
 const checkoutSummary = props => {
   return (
     <div style={{ margin: "auto" }} className={classes.CheckoutSummary}>
