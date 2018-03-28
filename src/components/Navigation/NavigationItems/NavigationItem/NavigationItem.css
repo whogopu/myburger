@@ -27,12 +27,14 @@
     width: auto;
     align-items: center;
   }
+
   .NavigationItem a {
     color: white;
     height: 100%;
     padding: 16px 10px;
     border-bottom: 4px solid transparent;
   }
+
   .NavigationItem a:hover,
   .NavigationItem a:active,
   .NavigationItem a.active {
@@ -40,5 +42,4 @@
     border-bottom: 4px solid #40a4c8;
     color: white;
   }
-
 }
